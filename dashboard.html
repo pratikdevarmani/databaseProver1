@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Job Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <!-- Navbar -->
+        <div id="nav">
+            <h2>JobVersify</h2>
+            <div class="nav-part2">
+                <h4>Consult</h4>
+                <h4>Courses</h4>
+                <h4>Career</h4>
+                <h4>Blog</h4>
+                <button onclick="window.location.href='register.html'">Login</button>
+            </div>
+        </div>
+
+        <!-- User Dashboard -->
+        <div id="userDashboard">
+            <h2>User Profile & Job Applications</h2>
+            
+            <!-- Unified Table for User Information and Job Applications -->
+            <div class="user-table">
+                <table id="userInfoTable">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Job Title</th>
+                            <th>Status</th>
+                            <th>Application Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userApplicationsList">
+                        <!-- Rows populated via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch user profile and job applications for the dashboard
+        async function fetchUserProfileAndApplications() {
+            try {
+                // Fetch user profile
+                const userProfileResponse = await fetch('http://localhost:3000/api/user/profile');
+                const user = await userProfileResponse.json();
+                
+                // Fetch user applications
+                const applicationsResponse = await fetch('http://localhost:3000/api/user/applications');
+                const applications = await applicationsResponse.json();
+
+                // Get the table body element
+                const userApplicationsList = document.getElementById('userApplicationsList');
+                userApplicationsList.innerHTML = '';  // Clear existing entries
+
+                if (applications.length > 0) {
+                    applications.forEach(application => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${user.name}</td>
+                            <td>${user.email}</td>
+                            <td>${application.jobTitle}</td>
+                            <td>${application.status}</td>
+                            <td>${new Date(application.appliedDate).toLocaleDateString()}</td>
+                        `;
+                        userApplicationsList.appendChild(row);
+                    });
+                } else {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td colspan="5" style="text-align:center;">No job applications found.</td>`;
+                    userApplicationsList.appendChild(row);
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        }
+
+        // Initialize the user dashboard data
+        window.onload = () => {
+            fetchUserProfileAndApplications();
+        };
+    </script>
+</body>
+</html>

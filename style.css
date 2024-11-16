@@ -1,0 +1,710 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+.main {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+#nav {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  border-bottom: 1px solid #dadada;
+}
+.nav-part2 {
+  display: flex;
+  gap: 4vw;
+  align-items: center;
+}
+.nav-part2 button {
+  padding: 0.5vw 2vw;
+  font-weight: 400;
+}
+#nav h2 {
+  font-size: 3vw;
+  font-weight: 700;
+}
+#nav i {
+  font-size: 1.5vw;
+  font-weight: 800;
+  display: none;
+}
+
+.content {
+  height: calc(100% - 80px);
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+#left {
+  height: 100%;
+  width: 55%;
+  padding: 5vw 5vw;
+  gap: 2%;
+}
+#right {
+  height: 100%;
+  width: 45%;
+}
+
+#left h1 {
+  font-size: 1vw;
+  padding-bottom: 1vw;
+  gap: 2vw;
+}
+/* #left h1 span{
+    /* color:#CEB4FB; */
+*/ #left p {
+  font-size: 1vw;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 2vw;
+  margin-top: 3vw;
+}
+#title {
+  font-size: 4vw;
+}
+#unique {
+  /* font-size: 3vw; */
+  color: #0000ff;
+}
+#content {
+  font-size: bold;
+}
+#right video {
+  height: 100%;
+  width: 100%;
+  /* display: block; */
+  border-top-left-radius: 155px;
+  border-bottom-left-radius: 155px;
+}
+#register {
+  font-size: 1.5vw;
+  /* padding: 1vw 2vw; */
+  background-color: #ffffff;
+  color: #0000ff;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+}
+button {
+  font-size: 1.5vw;
+  padding: 1vw 2vw;
+  background-color: #0000ff;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+#jobsContainer {
+  width: 100%;
+  padding: 5vw 10vw;
+  background-color: #f9f9f9;
+}
+
+#jobsContainer h2 {
+  font-size: 2.5vw;
+  text-align: center;
+  margin-bottom: 2vw;
+  color: #333;
+}
+
+/* Job List Styling */
+#jobsList {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  align-items: center;
+}
+
+/* Individual Job Box */
+.job {
+  width: 80%;
+  background-color: white;
+  padding: 2vw;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.job:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.job h3 {
+  font-size: 2vw;
+  color: #4a90e2;
+  margin-bottom: 1vw;
+}
+
+.job p {
+  font-size: 1.2vw;
+  color: #666;
+  line-height: 1.6;
+}
+
+.job p:last-child {
+  font-weight: bold;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  /* Responsive Adjustments */
+  #jobsContainer {
+    padding: 5vw;
+  }
+
+  #jobsContainer h2 {
+    font-size: 5vw;
+  }
+
+  .job {
+    width: 90%;
+    padding: 4vw;
+  }
+
+  .job h3 {
+    font-size: 4vw;
+  }
+
+  .job p {
+    font-size: 3vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    background-color: black;
+    color: aliceblue;
+    padding: 0 5vw;
+  }
+  .nav h2 {
+    font-size: 6vw;
+  }
+  .nav h4 {
+    font-size: 4vw;
+    display: none;
+  }
+  .nav i {
+    display: block;
+    font-size: 6vw;
+  }
+  .nav-part2 {
+    display: none;
+  }
+}
+
+/* Container for the job application form */
+#applicationFormContainer {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  text-align: left;
+  margin: 40px auto; /* Centers the form on the page */
+}
+
+/* Form title */
+#applicationFormContainer h2 {
+  font-size: 2.5vw;
+  margin-bottom: 1.5vw;
+  color: #333;
+  text-align: center;
+}
+
+/* Form styling */
+#applicationForm {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column layout for the form */
+  gap: 1.5vw; /* Spacing between rows */
+}
+
+/* Label and input field styling */
+#applicationForm input,
+#applicationForm select {
+  padding: 1.2vw;
+  margin-bottom: 1.5vw;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.5vw;
+  width: 100%;
+}
+
+/* Adjust button styling */
+#applicationForm button {
+  padding: 1vw 2vw;
+  background-color: #0000ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5vw;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+#applicationForm button:hover {
+  background-color: #0000ff; /* Slightly darker shade on hover */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 600px) {
+  #applicationFormContainer {
+    padding: 4vw;
+  }
+
+  #applicationFormContainer h2 {
+    font-size: 6vw;
+    margin-bottom: 4vw;
+  }
+
+  #applicationForm input,
+  #applicationForm select {
+    padding: 3vw;
+    font-size: 4vw;
+  }
+
+  #applicationForm button {
+    padding: 4vw 5vw;
+    font-size: 4vw;
+  }
+}
+
+#footer {
+  background-color: #333;
+  color: white;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px; /* Added more gap to separate the two developers */
+  flex-wrap: wrap; /* Ensures it wraps on smaller screens */
+}
+
+.developer-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 10px;
+}
+
+.developer-image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image fits well within the circle */
+  border: 2px solid #fff; /* Optional: Adds a white border around the image */
+}
+
+.developer-details h4 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.developer-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* background-color: #f4f4f4; */
+}
+
+/* Navbar styling */
+#nav {
+  background-color: #0000ff;
+  color: rgb(255, 255, 255);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#nav h2 {
+  margin: 0;
+}
+
+.nav-part2 h4 {
+  display: inline;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+button {
+  /* background-color: #0000ff; */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+/* Registration form container */
+#registrationFormContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 500px;
+  margin-top: 50px;
+  margin: 5vw 30vw;
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form table {
+  width: 100%;
+}
+
+form table td {
+  padding: 10px;
+  text-align: left;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #registrationFormContainer {
+    width: 90%;
+    padding: 10px;
+  }
+}
+.user-table {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.user-table table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 2vw;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-table th,
+.user-table td {
+  padding: 1.5vw;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.5vw;
+}
+
+.user-table th {
+  background-color: #4a90e2;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.user-table td {
+  text-align: center;
+}
+
+.user-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .user-table table {
+    width: 100%;
+  }
+
+  .user-table th,
+  .user-table td {
+    font-size: 3vw;
+    padding: 1vw;
+  }
+}
+
+/* Explore page css */
+
+/* #exploreContainer {
+    padding: 20px;
+    text-align: center;
+} */
+
+/* h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    
+}
+
+#jobsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 20px;
+} */
+
+/* .job-card {
+    width: 30%;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    padding: 15px;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+/* height: 100%; */
+/* } */
+*/
+
+/* .job-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.job-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.job-info {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column; /* Stack info vertically */
+    /* gap: 10px; Add space between each element */
+/* } */
+
+/* .job-info h3 {
+    font-size: 1.8em;
+    color: #4A90E2;
+    margin-bottom: 10px;
+}
+
+.job-info p {
+    font-size: 1em;
+    color: #666;
+    margin: 5px 0;
+} */
+
+/* .job-info p strong {
+    color: #333;
+}
+
+.user-table {
+    margin-top: 50px;
+} */ */
+
+/* table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #4A90E2;
+    color: white;
+    font-weight: bold;
+}
+
+td img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+} */
+
+/* @media (max-width: 1024px) {
+    .job-card {
+        width: 45%;
+    }
+} */
+
+/* @media (max-width: 768px) {
+    .job-card {
+        width: 100%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+} */
+
+/* explore page css */
+
+#pagecontainer {
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+#informationcontent{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+#jobtitle h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: hsl(0, 0%, 100%);
+    transform: translateX(50%);
+    overflow: hidden;
+  }
+
+#job1 {
+  height: 70vh;
+  width: 35vw;
+  color: black;
+  /* background-color: rgba(0, 0, 0, 0.667); */
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 60px;
+  border: 1px solid rgb(180, 176, 176);
+}
+#job-info h3{
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 130px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid rgb(180, 176, 176);
+}
+#job1 img {
+  height: 38vh;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+#job1content {
+  border-top: 0.5px solid rgb(180, 176, 176);
+  padding-left: 15px;
+  padding-top: 5px;
+}
+
+#job2 {
+  height: 70vh;
+  width: 35vw;
+  color: black;
+  /* background-color: rgba(8, 8, 8, 0.667); */
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 50px;
+  border: 1px solid rgb(180, 176, 176);
+  
+}
+#job2 img {
+  height: 40vh;
+  width: 100%;
+  
+}
+
+#job2content {
+    border-top: 0.5px solid rgb(180, 176, 176);
+    padding-left: 15px;
+    padding-top: 5px;
+  }
+
+
+  #job3 {
+    height: 70vh;
+    width: 35vw;
+    color: black;
+    /* background-color: rgba(8, 8, 8, 0.667); */
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-left: 50px;
+    border: 1px solid rgb(180, 176, 176);
+    
+  }
+  #job3 img {
+    height: 40vh;
+    width: 100%;
+    
+  }
+  
+  #job3content {
+      border-top: 0.5px solid rgb(180, 176, 176);
+      padding-left: 15px;
+      padding-top: 5px;
+    }
+  

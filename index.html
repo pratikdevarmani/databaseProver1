@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main">
+        <div id="nav">
+            <h2>JobVersify</h2>
+            <div class="nav-part2">
+                <h4>Consult</h4>
+                <h4>Courses</h4>
+                <h4>Career</h4>
+                <h4>Blog</h4>
+                <a href="register.html">
+                    <button id="register">Register</button>
+                </a>
+                
+                <i class="ri-menu-2-line"></i>
+            </div>
+        </div>
+
+        <div class="content">
+            <div id="left">
+                <h1><span id="title">"Unlock Your <br> <span id="unique"> Carrer Potential </span> <br> With
+                        JobVersify.</span> <br> <br> <br>                               
+                    <span id="content"></span> From IT professionals to local service providers, we welcome
+                    everyone</span>. Create your profile, share your expertise, and find opportunities that suit your
+                    unique skills". </span>
+                </h1> 
+                <p>Join a Growing Community <br>
+                    Connect with a diverse community of job seekers, freelancers, and professionals. Together, we’re
+                    creating a network that opens doors for everyone.</p>
+                <br>
+                <br>
+                <br><br>
+                <button>Explore Now</button>
+            </div>
+            <div id="right">
+
+                <video autoplay muted loop width="600">
+                    <source src="video.mp4" type="video/mp4">
+                </video>
+
+            </div>
+        </div>
+
+        <!-- Job Listings Section -->
+        <div id="jobsContainer">
+            <h2>Job Listings</h2>
+            <div id="jobsList"></div>
+        </div>
+
+        <!-- Job Application Form -->
+        <div id="applicationFormContainer">
+            <h2>Apply for a Job</h2>
+            <form id="applicationForm">
+                <input type="text" id="username" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <select id="jobId" required>
+                    <option value="" disabled selected>Service Provider Jobs</option>
+                    <option value="" disabled selected>Specialized Jobs</option>
+                    <option value="" disabled selected>Select Job</option>
+                    
+                </select>
+                <a href="dashboard.html" target="_blank" rel="noopener noreferrer">
+                <button type="submit">Apply</button></a>
+            </form>
+        </div>
+       
+<footer id="footer">
+    <div class="footer-content">
+      
+        <div class="developer-info">
+            <div class="developer-image">
+                <img src="pratik-image.jpg" alt="Pratik Devarmani">
+            </div>
+            <div class="developer-details">
+                <h4>Developed by Pratik Devarmani</h4>
+                <p>Web Developer | Job Portal Creator</p>
+                <p>Email: pratik@gmail.com</p>
+            </div>
+        </div>
+        
+        <div class="developer-info">
+            <div class="developer-image">
+                <img src="akhilesh-image.jpg" alt="Akhilesh Ghanur">
+            </div>
+            <div class="developer-details">
+                <h4>Developed by Akhilesh Ghanur</h4>
+                <p>Web Developer | Job Portal Creator</p>
+                <p>Email: akhilesh@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const jobs = [
+        { id: 'itProfessional', name: 'IT Professional' },
+        { id: 'serviceProvider', name: 'Service Provider' },
+        { id: 'developer', name: 'Web Developer' },
+        { id: 'Data Scientist', name: 'Data Scientist' },
+        { id: 'Network Administrator', name: 'Network Administrator' },
+        { id: 'Frontend Developer', name: 'Frontend Developer' },
+        { id: 'Backend Developer', name: 'Backend Developer' },
+        { id: 'Electrician', name: 'Electrician' },
+        { id: 'Plumber', name: 'Plumber' },
+        { id: 'Carpenter ', name: 'Carpenter' },
+        { id: 'Home Cleaner', name: 'Home Cleaner' },
+        { id: 'House Keeper', name: 'House Keeper' },   
+        { id: 'Milkman', name: 'Milkman' },
+        { id: 'Fitness Trainer', name: 'Fitness Trainer' },
+        { id: 'Event Manager', name: 'Event Manager' },
+        
+        
+       
+    ];
+
+    const jobSelect = document.getElementById('jobId');
+
+    // Loop through the jobs array and create <option> elements
+    jobs.forEach(job => {
+        const option = document.createElement('option');
+        option.value = job.id;
+        option.textContent = job.name;
+        jobSelect.appendChild(option);
+    });
+});
+        // Fetch job listings from the backend and display them
+        async function fetchJobListings() {
+            try {
+                const response = await fetch('http://localhost:3000/api/jobs');
+                const jobs = await response.json();
+
+                const jobsList = document.getElementById('jobsList');
+                jobsList.innerHTML = '';  // Clear existing job listings
+
+                jobs.forEach(job => {
+                    const jobElement = document.createElement('div');
+                    jobElement.classList.add('job');
+                    jobElement.innerHTML = `
+                        <h3>${job.title}</h3>
+                        <p>${job.description}</p>
+                        <p>Location: ${job.location}</p>
+                        <p>Salary: $${job.salary}</p>
+                    `;
+                    jobsList.appendChild(jobElement);
+                });
+            } catch (error) {
+                console.error('Error fetching job listings:', error);
+            }
+        }
+
+        // Populate the job dropdown for applications
+        async function populateJobDropdown() {
+            try {
+                const response = await fetch('http://localhost:3000/api/jobs');
+                const jobs = await response.json();
+                const jobSelect = document.getElementById('jobId');
+
+                jobs.forEach(job => {
+                    const option = document.createElement('option');
+                    option.value = job.job_id;
+                    option.textContent = job.title;
+                    jobSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error populating job dropdown:', error);
+            }
+        }
+
+        // Handle application form submission
+        document.getElementById('applicationForm').onsubmit = async function (event) {
+            event.preventDefault();
+
+            const applicationData = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                jobId: document.getElementById('jobId').value,
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/api/apply', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(applicationData)
+                });
+
+                if (response.ok) {
+                    alert('Application submitted successfully!');
+                    document.getElementById('applicationForm').reset();
+                } else {
+                    alert('Error submitting application.');
+                }
+            } catch (error) {
+                console.error('Error submitting application:', error);
+            }
+        };
+
+        // Initialize data fetching on page load
+        window.onload = () => {
+            fetchJobListings();
+            populateJobDropdown();
+        };
+    </script>
+</body>
+
+</html>
